@@ -21,6 +21,9 @@
       ido-use-filename-at-point 'guess
       ido-max-prospects 10)
 
+;; CSS Mode
+(setq cssm-indent-level 2)
+
 ;; Transparently open compressed files
 (auto-compression-mode t)
 
@@ -35,7 +38,24 @@
 (setq browse-url-browser-function 'browse-default-macosx-browser)
 ; (setq browse-url-browser-function 'browse-url-firefox)
 
+;; Don't clutter up directories with files~
+(setq backup-directory-alist `(("." . ,(expand-file-name
+                                        (concat dotfiles-dir "backups")))))
+
 ;; Mac-specific configuration
 
-(when (string= system-type "darwin")
-  (turn-on-follow-mouse))
+(when (eq system-type 'darwin)
+  ;; Work around a bug on OS X where system-name is FQDN
+  (setq system-name (car (split-string system-name "\\.")))
+
+  ;; We're using emacs instead of a window manager
+  (turn-on-follow-mouse)
+
+  ;; Work around a bug where environment variables aren't set correctly
+  (require 'osx-plist)
+  (when (file-exists-p "~/.MacOSX/environment.plist")
+    (osx-plist-update-environment))
+  )
+
+
+(provide 'roland-configuration)

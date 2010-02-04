@@ -22,7 +22,7 @@
 
 ;; Config
 
-(require 'configuration)
+(require 'roland-configuration)
 
 ;; System-specific configuration
 

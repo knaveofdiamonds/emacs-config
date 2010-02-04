@@ -23,6 +23,7 @@
 ;; Config
 
 (require 'roland-configuration)
+(require 'roland-keybindings)
 
 ;; System-specific configuration
 

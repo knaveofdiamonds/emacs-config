@@ -1,14 +1,6 @@
 ;; My Emacs config. Much of this is stolen from http://github.com/technomancy/emacs-starter-kit
 ;; but I wanted to build up my own version to understand everything.
 
-;; Basic Visual Changes
-
-(if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
-(if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
-
-(set-background-color "black")
-(set-foreground-color "#eeeeee")
-
 ;; Load Paths
 
 (setq dotfiles-dir (file-name-directory
@@ -20,13 +12,17 @@
 
 ;; Library requires
 
-(require 'cl)         ; Common Lisp Extensions? Provides mapc for example
-(require 'uniquify)   ; Makes duplicate buffer names use filepaths instead of <1>,<2> etc.
-(require 'saveplace)  ; Remember where you were in a file
-(require 'ansi-color) ; translates ANSI color escape sequences
-(require 'package)    ; ELPA packaging system
-
+(require 'cl)           ; Common Lisp Extensions? Provides mapc for example
+(require 'uniquify)     ; Makes duplicate buffer names use filepaths instead of <1>,<2> etc.
+(require 'saveplace)    ; Remember where you were in a file
+(require 'ansi-color)   ; translates ANSI color escape sequences
+(require 'package)      ; ELPA packaging system
+(require 'follow-mouse) ; Allows mouse-to-focus on windows
 (package-initialize)
+
+;; Config
+
+(require 'configuration)
 
 ;; System-specific configuration
 

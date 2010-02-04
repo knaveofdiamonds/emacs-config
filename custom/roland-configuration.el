@@ -1,5 +1,9 @@
 ;;;; Configuration tweaks ;;;;
 
+(setq font-lock-maximum-decoration t
+      inhibit-startup-message t
+      save-place-file (concat dotfiles-dir "places"))
+
 ;; Turn off frame decorations
 (if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
 (if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
@@ -27,9 +31,8 @@
 ;; Transparently open compressed files
 (auto-compression-mode t)
 
-;; Save a list of recent files visited and places in files
+;; Save a list of recent files visited
 (recentf-mode 1)
-(setq save-place-file (concat dotfiles-dir "places"))
 
 ;; Highlight matching parentheses when the point is on them.
 (show-paren-mode 1)

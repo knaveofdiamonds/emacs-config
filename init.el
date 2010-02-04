@@ -22,6 +22,7 @@
 
 ;; Config
 
+(require 'roland-hooks)
 (require 'roland-configuration)
 (require 'roland-keybindings)
 

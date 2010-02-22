@@ -1,3 +1,25 @@
+;; General coding hooks
+
+(defun local-comment-auto-fill ()
+  (set (make-local-variable 'comment-auto-fill-only-comments) t)
+  (auto-fill-mode t))
+
+(defun pretty-lambdas ()
+  (font-lock-add-keywords
+   nil `(("(?\\(lambda\\>\\)"
+          (0 (progn (compose-region (match-beginning 1) (match-end 1)
+                                    ,(make-char 'greek-iso8859-7 107))
+                    nil))))))
+
+(defun add-watchwords ()
+  (font-lock-add-keywords
+   nil '(("\\<\\(FIX\\|TODO\\|FIXME\\|HACK\\|REFACTOR\\):"
+          1 font-lock-warning-face t))))
+
+(add-hook 'coding-hook 'local-comment-auto-fill)
+(add-hook 'coding-hook 'pretty-lambdas)
+(add-hook 'coding-hook 'add-watchwords)
+
 ;; Espresso mode hooks
 
 (autoload 'espresso-mode "espresso" "Start espresso-mode" t)
@@ -9,9 +31,6 @@
 (eval-after-load 'espresso
   '(progn ;; fixes problem with pretty function font-lock
           (define-key espresso-mode-map (kbd ",") 'self-insert-command)
-          (font-lock-add-keywords 'espresso-mode
-                        '(("\\<\\(FIX\\|TODO\\|FIXME\\|HACK\\|REFACTOR\\):"
-                           1 font-lock-warning-face t)))
           (font-lock-add-keywords
            'espresso-mode `(("\\(function *\\)("
                              (0 (progn (compose-region (match-beginning 1)

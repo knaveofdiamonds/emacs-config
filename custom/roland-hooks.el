@@ -50,5 +50,8 @@
 (add-to-list 'auto-mode-alist '("\\.ru$" . ruby-mode))
 (add-to-list 'auto-mode-alist '("Gemfile$" . ruby-mode))
 
+(require 'mustache-mode)
+(add-to-list 'auto-mode-alist '("\\.mustache$" . mustache-mode))
+
 
 (provide 'roland-hooks)

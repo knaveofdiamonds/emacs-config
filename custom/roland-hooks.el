@@ -1,5 +1,12 @@
 ;; General coding hooks
 
+(defvar coding-hook nil
+  "Hook that gets run on activation of any programming mode.")
+
+(defun run-coding-hook ()
+  "Enable things that are convenient across all coding buffers."
+  (run-hooks 'coding-hook))
+
 (defun local-comment-auto-fill ()
   (set (make-local-variable 'comment-auto-fill-only-comments) t)
   (auto-fill-mode t))
@@ -16,6 +23,7 @@
    nil '(("\\<\\(FIX\\|TODO\\|FIXME\\|HACK\\|REFACTOR\\):"
           1 font-lock-warning-face t))))
 
+(add-hook 'coding-hook 'local-column-number-mode)
 (add-hook 'coding-hook 'local-comment-auto-fill)
 (add-hook 'coding-hook 'pretty-lambdas)
 (add-hook 'coding-hook 'add-watchwords)
@@ -26,8 +34,10 @@
 (add-to-list 'auto-mode-alist '("\\.js$" . espresso-mode))
 (add-to-list 'auto-mode-alist '("\\.json$" . espresso-mode))
 (add-hook 'espresso-mode-hook 'moz-minor-mode)
+(add-hook 'espresso-mode-hook 'run-coding-hook)
 (setq espresso-indent-level 2)
 
+;; TODO figure out why this does odd things
 (eval-after-load 'espresso
   '(progn ;; fixes problem with pretty function font-lock
           (define-key espresso-mode-map (kbd ",") 'self-insert-command)
@@ -50,8 +60,24 @@
 (add-to-list 'auto-mode-alist '("\\.ru$" . ruby-mode))
 (add-to-list 'auto-mode-alist '("Gemfile$" . ruby-mode))
 
+(add-hook 'ruby-mode-hook 'run-coding-hook)
+
+;; Diffs/Magit coloring
+
+(eval-after-load 'diff-mode
+  '(progn
+     (set-face-foreground 'diff-added "green4")
+     (set-face-foreground 'diff-removed "red3")))
+
+(eval-after-load 'magit
+  '(progn
+     (set-face-foreground 'magit-diff-add "green3")
+     (set-face-foreground 'magit-diff-del "red3")))
+
+
+;; Other
+
 (require 'mustache-mode)
 (add-to-list 'auto-mode-alist '("\\.mustache$" . mustache-mode))
-
 
 (provide 'roland-hooks)

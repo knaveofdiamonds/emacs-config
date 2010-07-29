@@ -20,6 +20,7 @@
 ;; IDO
 (ido-mode t)
 (setq ido-enable-prefix nil
+      ido-use-filename-at-point -1
       ido-enable-flex-matching t
       ido-create-new-buffer 'always
       ido-use-filename-at-point 'guess

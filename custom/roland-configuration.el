@@ -8,6 +8,9 @@
 (if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
 (if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
 
+;; Allow you to undo/redo window configuration
+(when (fboundp 'winner-mode) (winner-mode 1))
+
 ;; Colours
 (set-background-color "black")
 (set-foreground-color "#eeeeee")
@@ -21,9 +24,8 @@
 (ido-mode t)
 (setq ido-enable-prefix nil
       ido-use-filename-at-point -1
-      ido-enable-flex-matching t
+      ido-enable-flex-matching -1
       ido-create-new-buffer 'always
-      ido-use-filename-at-point 'guess
       ido-max-prospects 10)
 
 ;; CSS Mode
@@ -45,6 +47,9 @@
 ;; Don't clutter up directories with files~
 (setq backup-directory-alist `(("." . ,(expand-file-name
                                         (concat dotfiles-dir "backups")))))
+
+;; Die TRAMP, DIEE!!!!
+(setq tramp-mode -1)
 
 ;; Mac-specific configuration
 

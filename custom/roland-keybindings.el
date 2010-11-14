@@ -1,5 +1,6 @@
 ;; Custom keybindings go here
 
 (global-set-key (kbd "C-x C-g") 'magit-status)
+(global-set-key (kbd "C-x p")   'other-window-backward)
 
 (provide 'roland-keybindings)

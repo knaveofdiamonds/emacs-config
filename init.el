@@ -9,7 +9,7 @@
 (add-to-list 'load-path dotfiles-dir)
 (add-to-list 'load-path (concat dotfiles-dir "/vendor"))
 (add-to-list 'load-path (concat dotfiles-dir "/custom"))
-(add-to-list 'load-path (concat dotfiles-dir "/vendor/ess-5.9.1/lisp"))
+(add-to-list 'load-path (concat dotfiles-dir "/vendor/ess-5.8/lisp"))
 ;; Library requires
 
 (require 'cl)           ; Common Lisp Extensions? Provides mapc for example
@@ -33,6 +33,7 @@
 
 ;; Config
 
+(require 'roland-functions)
 (require 'roland-hooks)
 (require 'roland-configuration)
 (require 'roland-keybindings)

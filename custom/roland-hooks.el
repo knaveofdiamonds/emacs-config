@@ -62,6 +62,7 @@
 (add-to-list 'auto-mode-alist '("Capfile$" . ruby-mode))
 
 (add-hook 'ruby-mode-hook 'run-coding-hook)
+(add-hook 'ruby-mode-hook 'ruby-electric-mode)
 
 ;; Diffs/Magit coloring
 

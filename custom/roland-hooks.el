@@ -20,7 +20,7 @@
 
 (defun add-watchwords ()
   (font-lock-add-keywords
-   nil '(("\\<\\(FIX\\|TODO\\|FIXME\\|HACK\\|REFACTOR\\):"
+   nil '(("\\<\\(FIX\\|TODO\\|FIXME\\|HACK\\|REFACTOR\\|NOTE\\):"
           1 font-lock-warning-face t))))
 
 (add-hook 'coding-hook 'local-column-number-mode)

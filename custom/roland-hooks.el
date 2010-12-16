@@ -20,7 +20,7 @@
 
 (defun add-watchwords ()
   (font-lock-add-keywords
-   nil '(("\\<\\(FIX\\|TODO\\|FIXME\\|HACK\\|REFACTOR\\):"
+   nil '(("\\<\\(FIX\\|TODO\\|FIXME\\|HACK\\|REFACTOR\\|NOTE\\):"
           1 font-lock-warning-face t))))
 
 (add-hook 'coding-hook 'local-column-number-mode)
@@ -62,6 +62,7 @@
 (add-to-list 'auto-mode-alist '("Capfile$" . ruby-mode))
 
 (add-hook 'ruby-mode-hook 'run-coding-hook)
+(add-hook 'ruby-mode-hook 'ruby-electric-mode)
 
 ;; Diffs/Magit coloring
 

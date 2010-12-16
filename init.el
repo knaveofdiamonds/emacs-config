@@ -49,7 +49,8 @@
   ;; Your init file should contain only one such instance.
   ;; If there is more than one, they won't work right.
  '(espresso-indent-level 2)
- '(magit-git-executable "/usr/local/git/bin/git"))
+ '(magit-git-executable "/opt/local/bin/git")
+ '(ruby-electric-expand-delimiters-list nil))
 
 (custom-set-faces
   ;; custom-set-faces was added by Custom.

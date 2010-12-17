@@ -20,6 +20,10 @@
 (set-keyboard-coding-system 'utf-8)
 (prefer-coding-system 'utf-8)
 
+;; Perspectives
+
+(persp-mode t)
+
 ;; IDO
 (ido-mode t)
 (setq ido-enable-prefix nil

@@ -1,3 +1,11 @@
+(defun toggle-fullscreen ()
+  (interactive)
+  (if (eq system-type 'darwin)
+      (ns-toggle-fullscreen)
+    (set-frame-parameter nil 'fullscreen (if (frame-parameter nil 'fullscreen)
+					     nil
+                                           'fullboth))))
+
 (defun other-window-backward (&optional n)
   "Select Nth previous window."
   (interactive "P")

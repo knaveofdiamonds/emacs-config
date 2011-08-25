@@ -57,14 +57,13 @@
 ;; Die TRAMP, DIEE!!!!
 (setq tramp-mode -1)
 
+(turn-on-follow-mouse)
+
 ;; Mac-specific configuration
 
 (when (eq system-type 'darwin)
   ;; Work around a bug on OS X where system-name is FQDN
   (setq system-name (car (split-string system-name "\\.")))
-
-  ;; We're using emacs instead of a window manager
-  (turn-on-follow-mouse)
 
   ;; Work around a bug where environment variables aren't set correctly
   (require 'osx-plist)

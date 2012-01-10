@@ -65,6 +65,11 @@
 (add-hook 'ruby-mode-hook 'run-coding-hook)
 (add-hook 'ruby-mode-hook 'ruby-electric-mode)
 
+;; Puppet mode
+
+(autoload 'puppet-mode "puppet-mode" "Major mode for editing puppet manifests")
+(add-to-list 'auto-mode-alist '("\\.pp$" . puppet-mode))
+
 ;; Diffs/Magit coloring
 
 (eval-after-load 'diff-mode

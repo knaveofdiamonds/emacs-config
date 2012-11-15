@@ -1,0 +1,9 @@
+# name: rspec file outline.
+# binding: C-c s s
+# key: spec
+# --
+require "spec_helper"
+
+describe ${1:`(ruby-class-name-from-spec-file-name)`} do
+  $0
+end

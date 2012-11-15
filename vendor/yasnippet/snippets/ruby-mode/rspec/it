@@ -1,0 +1,7 @@
+# name: rspec it block
+# binding: C-c s i
+# key: it
+# --
+it "${1:should}" do
+  $0
+end

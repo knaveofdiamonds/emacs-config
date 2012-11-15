@@ -38,17 +38,20 @@
 (setq espresso-indent-level 2)
 
 ;; TODO figure out why this does odd things
-(eval-after-load 'espresso
-  '(progn ;; fixes problem with pretty function font-lock
-          (define-key espresso-mode-map (kbd ",") 'self-insert-command)
-          (font-lock-add-keywords
-           'espresso-mode `(("\\(function *\\)("
-                             (0 (progn (compose-region (match-beginning 1)
-                                                       (match-end 1) "ƒ")
-                                       nil)))))))
+;; (eval-after-load 'espresso
+;;   '(progn ;; fixes problem with pretty function font-lock
+;;           (define-key espresso-mode-map (kbd ",") 'self-insert-command)
+;;           (font-lock-add-keywords
+;;            'espresso-mode `(("\\(function *\\)("
+;;                              (0 (progn (compose-region (match-beginning 1)
+;;                                                        (match-end 1) "ƒ")
+;;                                        nil)))))))
 
 
 ;; Ruby/Feature mode hooks
+
+(require 'rvm)
+(rvm-use-default)
 
 (require 'feature-mode)
 (add-to-list 'auto-mode-alist '("\.feature$" . feature-mode))
@@ -60,10 +63,19 @@
 (add-to-list 'auto-mode-alist '("\\.ru$" . ruby-mode))
 (add-to-list 'auto-mode-alist '("Gemfile$" . ruby-mode))
 (add-to-list 'auto-mode-alist '("Capfile$" . ruby-mode))
+(add-to-list 'auto-mode-alist '("\\.rabl$" . ruby-mode))
 (add-to-list 'auto-mode-alist '("\\.erb$" . html-mode))
 
 (add-hook 'ruby-mode-hook 'run-coding-hook)
-(add-hook 'ruby-mode-hook 'ruby-electric-mode)
+
+(require 'rspec-mode)
+
+; Fixes issues with rspec mode and ZSH
+(defadvice rspec-compile (around rspec-compile-around)
+  "Use BASH shell for running the specs because of ZSH issues."
+  (let ((shell-file-name "/bin/bash"))
+    ad-do-it))
+(ad-activate 'rspec-compile)
 
 ;; Puppet mode
 
@@ -91,7 +103,18 @@
 
 (add-to-list 'auto-mode-alist '("\\.less$" . css-mode))
 
+(require 'adoc-mode)
+
 (require 'mustache-mode)
 (add-to-list 'auto-mode-alist '("\\.mustache$" . mustache-mode))
 
+;; Yasnippet
+
+(add-to-list 'load-path "~/.emacs.d/vendor/yasnippet")
+(require 'yasnippet)
+(yas-global-mode 1)
+(setq yas/also-auto-indent-first-line t)
+
+
 (provide 'roland-hooks)
+
